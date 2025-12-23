@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container-fluid p-4">
+
+    <h1 class="text-center mb-4">四象限任务管理</h1>
+
+    <div class="row quadrant-container">
+
+        
+        <div class="col-6 p-2">
+            <div class="quadrant q1 position-relative">
+                <h4>重要且紧急</h4>
+
+                <!-- “+”here -->
+                <button class="btn btn-sm btn-danger add-task-btn position-absolute top-0 end-0 m-2"
+                        data-quadrant="1"
+                        data-bs-toggle="modal"
+                        data-bs-target="#taskModal">＋</button>
+
+                <div class="task-list"></div>
+            </div>
+        </div>
+
+        <div class="col-6 p-2">
+            <div class="quadrant q2 position-relative">
+                <h4>重要不紧急</h4>
+
+                <button class="btn btn-sm btn-primary add-task-btn position-absolute top-0 end-0 m-2"
+                        data-quadrant="2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#taskModal">＋</button>
+
+                <div class="task-list"></div>
+            </div>
+        </div>
+
+        <div class="col-6 p-2">
+            <div class="quadrant q3 position-relative">
+                <h4>不重要但紧急</h4>
+
+                <button class="btn btn-sm btn-warning add-task-btn position-absolute top-0 end-0 m-2"
+                        data-quadrant="3"
+                        data-bs-toggle="modal"
+                        data-bs-target="#taskModal">＋</button>
+
+                <div class="task-list"></div>
+            </div>
+        </div>
+        
+        <div class="col-6 p-2">
+            <div class="quadrant q4 position-relative">
+                <h4>不重要不紧急</h4>
+
+                <button class="btn btn-sm btn-success add-task-btn position-absolute top-0 end-0 m-2"
+                        data-quadrant="4"
+                        data-bs-toggle="modal"
+                        data-bs-target="#taskModal">＋</button>
+
+                <div class="task-list"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% include "task_modal.html" %}
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='tasks.js') }}"></script>
+{% endblock %}

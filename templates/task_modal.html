@@ -1,0 +1,55 @@
+<div class="modal fade" id="taskModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">添加任务</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="taskForm">
+
+          <input type="hidden" id="quadrantInput">
+
+          <div class="mb-3">
+            <label class="form-label">任务名称</label>
+            <input type="text" class="form-control" id="taskName">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">DDL</label>
+            <input type="datetime-local" class="form-control" id="taskDDL">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">描述</label>
+            <textarea class="form-control" id="taskDesc"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">属性</label>
+            <input type="text" class="form-control" id="taskAttr">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">地点</label>
+            <input type="text" class="form-control" id="taskLocation">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">预计用时（分钟）</label>
+            <input type="number" class="form-control" id="taskDuration">
+          </div>
+
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+        <button class="btn btn-primary" id="submitTask">提交</button>
+      </div>
+
+    </div>
+  </div>
+</div>
