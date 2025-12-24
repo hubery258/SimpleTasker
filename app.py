@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask,render_template,request,redirect
+from flask import Flask,render_template,request,redirect,jsonify
 
 def get_db(): 
     conn = sqlite3.connect("task.db") 
@@ -35,10 +35,12 @@ def AddTask():
         content = None
     duration = request.form.get("taskDuration")
     duration = int(duration) if duration else None
+    completed = 1 if request.form.get("taskCompleted") == "1" else 0
     
     conn = get_db() 
     cursor = conn.cursor() 
-    cursor.execute( "INSERT INTO tasks (name, ddl, content, duration, quadrant) VALUES (?, ?, ?, ?, ?)", (name, ddl, content, duration, quadrant) ) 
+    cursor.execute( "INSERT INTO tasks (name, ddl, content, duration, quadrant, completed) VALUES (?, ?, ?, ?, ?, ?)", 
+                   (name, ddl, content, duration, quadrant, completed) ) 
     conn.commit() 
     conn.close()
     return redirect("/")
@@ -52,3 +54,39 @@ def DeleteTask():
     conn.commit()
     conn.close()
     return ("",204)
+
+@app.route("/editTask", methods=["POST"])
+def EditTask():
+    editid = request.form.get("taskId")
+    if not editid:
+        return ("Missing id", 400)
+    
+    name = request.form.get("taskName")
+    ddl = request.form.get("taskDDL") or None
+    content = request.form.get("taskCont") or None
+    duration = request.form.get("taskDuration")
+    duration = int(duration) if duration else None
+    quadrant = request.form.get("quadrantCheck")
+    completed = 1 if request.form.get("taskCompleted") == "1" else 0
+
+    conn = get_db()
+    cur = conn.cursor()
+    cur.execute(
+      "UPDATE tasks SET name=?, ddl=?, content=?, duration=?, quadrant=?, completed=? WHERE id=?",
+      (name, ddl, content, duration, quadrant, completed, editid)
+    )
+    conn.commit()
+    conn.close()
+    return redirect("/")
+
+# actually I'm not very sure about what the hack happen about the code below
+# but it can run,powerful AI indeed.
+@app.route("/task/<int:editid>")
+def GetTask(editid):
+    conn = get_db()
+    cur = conn.cursor()
+    row = cur.execute("SELECT * FROM tasks WHERE id = ?", (editid,)).fetchone()
+    conn.close()
+    if not row:
+        return ("Not found", 404)
+    return jsonify(dict(row))
