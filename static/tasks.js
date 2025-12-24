@@ -66,6 +66,7 @@ document.addEventListener('click', async (e) => {
         if (next === 1) nameEl.classList.add('completed');
         else nameEl.classList.remove('completed');
       }
+      location.reload();
     } else {
       alert('更新完成状态失败');
     }

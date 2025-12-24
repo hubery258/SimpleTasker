@@ -12,7 +12,9 @@ app = Flask(__name__)
 def index():
     tasks = get_db() 
     cursor = tasks.cursor() 
-    rows = cursor.execute("SELECT * FROM tasks").fetchall() 
+    rows = cursor.execute(
+    "SELECT * FROM tasks ORDER BY quadrant, completed ASC, (ddl IS NULL) ASC, ddl ASC"
+    ).fetchall() # 排序方式：完成置底，未完成按ddl排
     tasks.close()
     quadrants = [
         {"id": 1, "title": "重要且紧急", "btn_class": "btn-danger", "q_class": "q1"},
