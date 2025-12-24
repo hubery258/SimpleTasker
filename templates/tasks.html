@@ -18,11 +18,18 @@
 
                 <div class="task-list">
                     {% for t in tasks if t["quadrant"] == q.id %}
-                        <div class="task-item">
-                            <strong>{{ t["name"] }}</strong>
-                            {% if t["ddl"] %}<span class="text-muted"> ({{ t["ddl"] }})</span>{% endif %}
-                            <p>{{ t["content"] }}</p>
-                            <em>预计： {{ t["duration"] }} </em>
+                        <div class="task-item card mb-2 p-2 d-flex align-items-start">
+                            <div class="flex-grow-1">
+                                <strong class="task-name {% if t['completed'] %}completed{% endif %}">{{ t["name"] }}</strong>
+                                {% if t["ddl"] %}<span class="text-muted"> ({{ t["ddl"] }})</span>{% endif %}
+                                {% if t["content"] %}<p class="mb-1">{{ t["content"] }}</p>{% endif %}
+                                <small class="text-muted">预计： {{ t["duration"] }} 分钟</small>
+                            </div>
+                            
+                            <div class="ms-3 btn-group" role="group" aria-label="actions">
+                                <button type="button" class="btn btn-sm delete-task-btn btn-outline-danger" data-id="{{t['id']}}">🗑</button>
+                                <button type="button" class="btn btn-sm edit-task-btn btn-outline-secondary" data-id="{{t['id']}}">✎</button>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>
