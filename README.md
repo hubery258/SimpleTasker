@@ -89,4 +89,4 @@ SimpleTasker/
 ## 未来更新
 - see on `ideas.md`
 
-![页面预览](https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEOG7VpS_uSp3gWW54_oh0qWrXET6y40QACjyQAAqnnYVZXJ6A8E3gtYDYE.png)
+![页面预览](static/assets/预览.png)
