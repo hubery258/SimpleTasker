@@ -10,35 +10,31 @@
       <div class="modal-body">
         <form id="taskForm" method="post" action="/addTask">
 
-          <input type="hidden" id="quadrantCheck">
+          <input type="hidden" id="quadrantCheck" name="quadrantCheck">
 
           <div class="mb-3">
             <label class="form-label">任务名称</label>
-            <input type="text" class="form-control" id="taskName" required>
+            <input type="text" class="form-control" name="taskName" required>
           </div>
 
           <div class="mb-3">
             <label class="form-label">DDL</label>
-            <input type="datetime-local" class="form-control" id="taskDDL">
+            <input type="datetime-local" class="form-control" name="taskDDL">
           </div>
 
           <div class="mb-3">
             <label class="form-label">描述</label>
-            <textarea class="form-control" id="taskCont"></textarea>
+            <textarea class="form-control" name="taskCont"></textarea>
           </div>
 
           <div class="mb-3">
             <label class="form-label">预计用时（分钟）</label>
-            <input type="number" class="form-control" id="taskDuration" required>
+            <input type="number" class="form-control" name="taskDuration" required>
           </div>
           <button type="submit" class="btn btn-primary">提交</button>
+          <button class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
         </form>
       </div>
-
-      <div class="modal-footer">
-        <button class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-      </div>
-
     </div>
   </div>
 </div>
