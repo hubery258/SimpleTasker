@@ -1,7 +1,8 @@
 # SimpleTasker
-#### Video Demo:  https://youtu.be/XQ2e7rw6Xkw
 
-轻量的四象限任务管理应用（*and more...*）。
+轻量的四象限任务管理应用,支持基本的任务新增（ddl，名字，描述，预计用时），修改，删除与完成，页面预览见最下方。
+
+*more coming...*
 
 ## 快速开始
 
@@ -87,3 +88,5 @@ SimpleTasker/
 
 ## 未来更新
 - see on `ideas.md`
+
+![页面预览](https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAEOG7VpS_uSp3gWW54_oh0qWrXET6y40QACjyQAAqnnYVZXJ6A8E3gtYDYE.png)
