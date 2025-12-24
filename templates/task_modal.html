@@ -7,14 +7,14 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
-      <div class="modal-body">
+      <div class="modal-body" method="post" action="/addTask">
         <form id="taskForm">
 
-          <input type="hidden" id="quadrantInput">
+          <input type="hidden" id="quadrantCheck">
 
           <div class="mb-3">
             <label class="form-label">任务名称</label>
-            <input type="text" class="form-control" id="taskName">
+            <input type="text" class="form-control" id="taskName" required>
           </div>
 
           <div class="mb-3">
@@ -24,22 +24,12 @@
 
           <div class="mb-3">
             <label class="form-label">描述</label>
-            <textarea class="form-control" id="taskDesc"></textarea>
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label">属性</label>
-            <input type="text" class="form-control" id="taskAttr">
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label">地点</label>
-            <input type="text" class="form-control" id="taskLocation">
+            <textarea class="form-control" id="taskCont"></textarea>
           </div>
 
           <div class="mb-3">
             <label class="form-label">预计用时（分钟）</label>
-            <input type="number" class="form-control" id="taskDuration">
+            <input type="number" class="form-control" id="taskDuration" required>
           </div>
 
         </form>
@@ -47,7 +37,7 @@
 
       <div class="modal-footer">
         <button class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-        <button class="btn btn-primary" id="submitTask">提交</button>
+        <button class="btn btn-primary" id="submitTask" >提交</button>
       </div>
 
     </div>

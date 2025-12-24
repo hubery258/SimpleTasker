@@ -1,6 +1,41 @@
 # note
-你把 block title 删掉一点问题都没有，很符合你现在“先跑起来再说”的节奏。  
-下面我就按你现在这套东西来，一行一行讲 layout 里每一部分在干嘛，同时顺带把你用到的 Bootstrap 概念讲清楚。
+
+## ABOUT `layout.html`
+- body里的`bg-light`是bootstrap的背景工具
+
+## ABOUT `tasks.html`
+- `container-fluid`是bootstrap的*容器类*，占满视口横向空间，`p-4`是bootstrap的间距工具，给这个大元素的四周都加上一点间距，可用 `pt-`, `pb-`, `px-`, `py-` 调整方向性内边距,`mb-4`大约同理
+- `row`来自bootstrap，`quadrant-container`是css自定义
+- `position-relative`来自bootstrap，把元素设置为相对定位，以此元素作为定位参照
+- `col-6`是bootstrap的一个设置，把横向分成12份，每份占6，
+- `btn`,`btn-sm`,`btn-danger`是bootstrap类，控制按钮样式和配色，`position-...`用于绝对定位，`top-0`,`end-0`用于向上对齐和靠右对齐
+- `add-task-btn`是自定义项，在`tasks.js`里绑定点击事件
+- HTML 属性是 `data-quadrant="1"`，浏览器把所有以 `data-` 开头的自定义属性映射到元素的 `dataset`对象上，`data-`前缀在 `dataset` 中被去掉，所以用 `element.dataset.quadrant` 访问（返回字符串 "1"）。
+  - `data-bs-toggle`是bootstrap的data-API属性，告诉Bootstrap JS 把这个触发器当作打开 modal 的控件（modal是一个覆盖页面的对话框/弹窗，用于临时收集信息或提示，阻断页面其它交互直到关闭。）
+  - `data-bs-target="#taskModal"：Bootstrap` 用来定位要打开的 modal 的选择器（这里是 id 为 taskModal 的元素，应该在 `task_modal.html` 中定义）。可以是任何有效的 CSS 选择器（常用 #id）
+- 在熟练后，考虑到这些都是重复工作，用jinja的for语法代替写好了
+
+## ABOUT `task_modal.html`
+- bootstrap容器：
+  - `modal`,`fade`控制卡片呈现动画
+  - `modal-diaglog`，`modal-content`,`modal-body`,`modal-header`,`modal-footer`是boo标准结构与样式容器；
+  - `btn-close`boo控制关闭样式；
+  - `form-label`, `form-control`, `mb-3`: boo控制表单布局与间距、输入样式。
+  - `data-bs-dismiss="modal"`: Bootstrap data-API，用于让按钮自动关闭 modal。
+
+## ABOUT `tasks.js`
+- 使用class查找可以用`document.querySelectiorAll(".xxxx")`,而对于id查找`document.getElementById("<idname>")`会更方便
+- 其他的大致都能懂，不写了。
+
+## ABOUT `tasks.sql`
+- 先建一个最小可用的 tasks 表，不要想太多未来的字段。迁移就用脚本，修改也是正常的
+
+## ABOUT 基础更新：
+1. 这次project就四象限正常使用,转出和转入文件
+1. 把任务提交设置一下哪些可以不设置哪些必须设置
+1. 改一下任务卡片
+1. 提供任务卡片修改，计时，确定完成的模式
+
 
 我用的是之前给你的那个 `layout.html`，但把 `{% block title %}...{% endblock %}` 换成普通 `<title>`，方便跟你现在版本对上：
 
@@ -288,12 +323,12 @@
 
 ---
 
-# ⭐ 先回答你最关心的问题：  
+## ⭐ 先回答你最关心的问题：  
 ## **这个界面到底是 style.css 渲染的还是 Bootstrap？**
 
 一句话：
 
-# 👉 **布局是 Bootstrap 渲染的，视觉风格是 style.css 渲染的。**
+## 👉 **布局是 Bootstrap 渲染的，视觉风格是 style.css 渲染的。**
 
 更具体一点：
 
@@ -319,7 +354,7 @@
 
 ---
 
-# ⭐ 再讲讲你 style.css 里每一行到底在干嘛
+## ⭐ 再讲讲你 style.css 里每一行到底在干嘛
 
 我用你现在的 style.css 为例：
 
@@ -406,7 +441,7 @@ Bootstrap 不会给你这些颜色，是你自己定义的。
 
 ---
 
-# ⭐ 最关键的理解：CSS 的“优先级”是怎么决定的？
+## ⭐ 最关键的理解：CSS 的“优先级”是怎么决定的？
 
 你现在的页面是：
 
@@ -415,7 +450,7 @@ Bootstrap 不会给你这些颜色，是你自己定义的。
 
 所以：
 
-# 👉 **style.css 会覆盖 Bootstrap 的样式**
+## 👉 **style.css 会覆盖 Bootstrap 的样式**
 
 比如 Bootstrap 默认的 `.col-6` 没有背景色，但你给 `.q1` 写了背景色，那就用你的。
 
@@ -431,8 +466,8 @@ Bootstrap 不会给你这些颜色，是你自己定义的。
 
 ---
 
-# ⭐ 再讲一个你以后一定会用到的知识：  
-## **Bootstrap 的类名不会影响你自己的类名**
+## ⭐ 再讲一个你以后一定会用到的知识：  
+### **Bootstrap 的类名不会影响你自己的类名**
 
 Bootstrap 的类名都是：
 
@@ -455,7 +490,7 @@ Bootstrap 的类名都是：
 
 ---
 
-# ⭐ 最后总结一句话
+## ⭐ 最后总结一句话
 
 你现在看到的界面：
 
@@ -681,3 +716,4 @@ Bootstrap 的类名都是：
 
 如果你愿意，下一步我们可以做一件非常“象征意味”的事：  
 你来给现在这些 class 和文件结构重新命名一轮，然后我帮你 review 一下，让这个项目真正变成“你自己”的，而不是“AI demo 版”。
+

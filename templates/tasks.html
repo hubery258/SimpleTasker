@@ -11,12 +11,21 @@
             <div class="quadrant {{ q.q_class }} position-relative">
                 <h4>{{ q.title }}</h4>
 
-            <button class="btn btn-sm {{ q.btn_class }} add-task-btn position-absolute top-0 end-0 m-2"
-                    data-quadrant="{{ q.id }}"
-                    data-bs-toggle="modal"
-                    data-bs-target="#taskModal">＋</button>
+                <button class="btn btn-sm {{ q.btn_class }} add-task-btn position-absolute top-0 end-0 m-2"
+                        data-quadrant="{{ q.id }}"
+                        data-bs-toggle="modal"
+                        data-bs-target="#taskModal">＋</button>
 
-        <div class="task-list"></div>
+                <div class="task-list">
+                    {% for t in tasks if t["quadrant"] == q.id %}
+                        <div class="task-item">
+                            <strong>{{ t["name"] }}</strong>
+                            {% if t["ddl"] %}<span class="text-muted"> ({{ t["ddl"] }})</span>{% endif %}
+                            <p>{{ t["content"] }}</p>
+                            <em>{{ t["duration"] }}</em>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
         {% endfor %}
