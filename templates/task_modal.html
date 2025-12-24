@@ -7,8 +7,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
-      <div class="modal-body" method="post" action="/addTask">
-        <form id="taskForm">
+      <div class="modal-body">
+        <form id="taskForm" method="post" action="/addTask">
 
           <input type="hidden" id="quadrantCheck">
 
@@ -31,13 +31,12 @@
             <label class="form-label">预计用时（分钟）</label>
             <input type="number" class="form-control" id="taskDuration" required>
           </div>
-
+          <button type="submit" class="btn btn-primary">提交</button>
         </form>
       </div>
 
       <div class="modal-footer">
         <button class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-        <button class="btn btn-primary" id="submitTask" >提交</button>
       </div>
 
     </div>

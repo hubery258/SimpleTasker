@@ -1,7 +1,7 @@
 import sqlite3
 from flask import Flask,render_template,request,redirect
 
-tasks = sqlite3.connect("tasks.db")
+tasks = sqlite3.connect("task.db")
 cursor = tasks.cursor() # 创建游标，是发sql命令的对象
 
 
