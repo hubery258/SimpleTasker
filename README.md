@@ -84,9 +84,5 @@ SimpleTasker/
 └── .gitignore
 ```
 
-## 注意事项与建议
-
-- 代码阅读建议：从 `app.py` 的路由开始看，`templates/tasks.html` 展示前端渲染逻辑，`static/tasks.js` 处理 UI 行为。
-
 ## 未来更新
 - see on `ideas.md`
