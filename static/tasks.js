@@ -44,3 +44,30 @@ document.querySelectorAll('.add-task-btn').forEach(btn => {
     document.querySelector('#taskModal .modal-title').textContent = '添加任务';
   });
 });
+
+// √ 按钮：切换完成状态并更新 UI
+document.addEventListener('click', async (e) => {
+  if (e.target.matches('.done-task-btn')) {
+    const btn = e.target;
+    const id = btn.dataset.id;
+    const cur = btn.dataset.completed === '1' ? 1 : 0; // current state
+    const next = cur ? 0 : 1;
+
+    const resp = await fetch('/completeTask', {
+      method: 'POST',
+      body: new URLSearchParams({ id, state: String(next) })
+    });
+
+    if (resp.ok) {
+      btn.dataset.completed = String(next);
+      const taskItem = btn.closest('.task-item');
+      const nameEl = taskItem && taskItem.querySelector('.task-name');
+      if (nameEl) {
+        if (next === 1) nameEl.classList.add('completed');
+        else nameEl.classList.remove('completed');
+      }
+    } else {
+      alert('更新完成状态失败');
+    }
+  }
+});

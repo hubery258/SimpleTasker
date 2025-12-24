@@ -90,3 +90,17 @@ def GetTask(editid):
     if not row:
         return ("Not found", 404)
     return jsonify(dict(row))
+
+@app.route("/completeTask", methods=["POST"])
+def CompleteTask():
+    compid = request.form.get('id')
+    state = request.form.get('state')
+    if not compid or state is None:
+        return ("Missing parameters", 400)
+    state_update = 1 if str(state) == '1' else 0
+    conn = get_db()
+    cur = conn.cursor()
+    cur.execute("UPDATE tasks SET completed = ? WHERE id = ?", (state_update, compid))
+    conn.commit()
+    conn.close()
+    return ("", 204)

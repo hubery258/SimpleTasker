@@ -24,12 +24,39 @@
     margin-top: 10px;
 }
 
-.task-card {
-    background: white;
-    border: 1px solid #ccc;
-    padding: 8px;
-    margin-bottom: 8px;
-    border-radius: 6px;
-    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+/* 绿色实心勾按钮，白色粗体勾，和任务名等高 */
+.done-task-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;              /* 正方形按钮，按需调整 */
+  height: 32px;             /* 保持与行高匹配 */
+  padding: 0;
+  border-radius: 6px;
+  background-color: #198754; /* Bootstrap green */
+  color: #fff;              /* 白色勾号 */
+  border: none;
+  font-weight: 800;         /* 加粗勾 */
+  font-size: 1rem;
+  line-height: 1;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+  cursor: pointer;
 }
 
+/* hover / active 微交互 */
+.done-task-btn:hover { filter: brightness(0.95); }
+.done-task-btn:active { transform: translateY(1px); }
+
+/* 已完成状态时，按钮可以变为半透明或显示不同背景（可选） */
+.done-task-btn[data-completed="1"] {
+  background-color: #20c997; /* 更亮一点，或换成淡色表示已完成 */
+}
+
+/* 保持任务名与按钮垂直居中 */
+.task-item .task-actions { margin-left: 12px; display:flex; gap:6px; align-items:center; }
+
+/* 完成任务名称样式 */
+.task-name.completed {
+  color: #6c757d !important;
+  text-decoration: line-through;
+}

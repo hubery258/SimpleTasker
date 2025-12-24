@@ -18,19 +18,29 @@
 
                 <div class="task-list">
                     {% for t in tasks if t["quadrant"] == q.id %}
-                        <div class="task-item card mb-2 p-2 d-flex align-items-start">
-                            <div class="flex-grow-1">
-                                <strong class="task-name {% if t['completed'] %}completed{% endif %}">{{ t["name"] }}</strong>
-                                {% if t["ddl"] %}<span class="text-muted"> ({{ t["ddl"] }})</span>{% endif %}
-                                {% if t["content"] %}<p class="mb-1">{{ t["content"] }}</p>{% endif %}
-                                <small class="text-muted">预计： {{ t["duration"] }} 分钟</small>
-                            </div>
-                            
-                            <div class="ms-3 btn-group" role="group" aria-label="actions">
-                                <button type="button" class="btn btn-sm delete-task-btn btn-outline-danger" data-id="{{t['id']}}">🗑</button>
-                                <button type="button" class="btn btn-sm edit-task-btn btn-outline-secondary" data-id="{{t['id']}}">✎</button>
+                        <div class="task-item card mb-2 p-2">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <strong class="task-name {% if t['completed'] %}completed{% endif %}">{{ t["name"] }}</strong>
+                                    {% if t["ddl"] %}<span class="text-muted ms-2">({{ t["ddl"] }})</span>{% endif %}
+                                    {% if t["content"] %}<p class="mb-1">{{ t["content"] }}</p>{% endif %}
+                                    <small class="text-muted">预计：{{ t["duration"] }} 分钟</small>
+                                </div>
+
+                            <div class="task-actions d-flex align-items-center ms-3">
+                                <button type="button" 
+                                        class="btn btn-sm done-task-btn me-2" 
+                                        data-id="{{ t['id'] }}" 
+                                        data-completed="{{ t['completed'] }}">√</button>
+                                <button type="button" 
+                                        class="btn btn-sm btn-outline-secondary edit-task-btn me-1" 
+                                        data-id="{{ t['id'] }}" data-name="{{ t['name']|e }}" data-ddl="{{ t['ddl']|e }}" data-content="{{ t['content']|e }}" data-duration="{{ t['duration'] }}" data-quadrant="{{ t['quadrant'] }}" data-completed="{{ t['completed'] }}">✎</button>
+                                <button type="button" 
+                                        class="btn btn-sm btn-outline-danger delete-task-btn" 
+                                        data-id="{{ t['id'] }}">🗑</button>
                             </div>
                         </div>
+                    </div>
                     {% endfor %}
                 </div>
             </div>
